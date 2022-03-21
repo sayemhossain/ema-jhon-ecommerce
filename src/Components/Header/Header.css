@@ -9,4 +9,13 @@
 }
 .header a {
   text-decoration: none;
+  color: white;
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: 0.005em;
+  margin-left: 36px;
+  transition: all 0.2s ease-in;
+}
+.header a:hover {
+  color: orange;
 }
