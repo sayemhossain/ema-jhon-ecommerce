@@ -9,6 +9,7 @@ import "./Shop.css";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  // console.log(cart);
 
   //using useEffect and load data
   useEffect(() => {
@@ -18,7 +19,7 @@ const Shop = () => {
   }, []);
 
   const handleAddToCart = (product) => {
-    console.log(product);
+    // console.log(product);
     const newCart = [...cart, product];
     setCart(newCart);
   };
