@@ -6,16 +6,15 @@ import "./Cart.css";
 const Cart = (props) => {
   const { cart } = props;
 
-  //   this is for adding total price
+  //   this is for adding total price and shipping price
   let total = 0;
   let shippingCost = 0;
   for (const product of cart) {
     total = total + product.price;
     shippingCost += product.shipping;
   }
-
   //   this is for tax
-  const tax = (total * 5) / 100;
+  const tax = parseFloat(((total * 10) / 100).toFixed(2));
   //   this is for grand total
   const grandTotal = total + tax + shippingCost;
 
@@ -25,7 +24,7 @@ const Cart = (props) => {
       <p>Total Price: ${total}</p>
       <p>Total Shipping Charge: ${shippingCost}</p>
       <p>Tax: ${tax}</p>
-      <h4>Grand Total: ${grandTotal}</h4>
+      <h4>Grand Total: ${grandTotal.toFixed(2)}</h4>
       <div className="btn btn-one">
         Clear Cart <FontAwesomeIcon icon={faTrashCan} />
       </div>
