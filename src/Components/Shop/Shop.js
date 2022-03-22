@@ -17,6 +17,8 @@ const Shop = () => {
 
   const handleAddToCart = (product) => {
     console.log(product);
+    const newCart = [...cart, product];
+    setCart(newCart);
   };
   return (
     <div className="shop-container">
@@ -30,7 +32,14 @@ const Shop = () => {
         ))}
       </div>
       <div className="cart-container">
-        <h4>Order summary</h4>
+        <h3 className="cart-header">Order Summary</h3>
+        <p>Selected Items: {cart.length}</p>
+        <p>Total Price: {cart.length}</p>
+        <p>Total Shipping Charge: {cart.length}</p>
+        <p>Tax: ${cart.length}</p>
+        <h4>Grand Total: ${cart.length}</h4>
+        <div className="btn btn-one">Clear Cart</div>
+        <div className="btn btn-two">Review Order</div>
       </div>
     </div>
   );
