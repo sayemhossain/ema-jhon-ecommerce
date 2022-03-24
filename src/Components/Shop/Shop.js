@@ -8,6 +8,7 @@ import { addToDb, getStoredCart } from "../../utilities/fakedb";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   // facthing data from Api
   useEffect(() => {
@@ -16,9 +17,23 @@ const Shop = () => {
       .then((data) => setProducts(data));
   }, []);
 
+  // this is for cart
+  useEffect(() => {
+    const storedCart = getStoredCart();
+    // console.log(storedCart);
+    for (const id in storedCart) {
+      // console.log(id);
+      const addedProducts = products.find((product) => product.id === id);
+      console.log(addedProducts);
+    }
+  }, [products]);
+
   // this is for event handeler
   const handleAddToCart = (product) => {
-    console.log(product);
+    const newCart = [...cart, product];
+
+    setCart(newCart);
+    addToDb(product.id);
   };
   return (
     <div className="shop-container">
@@ -33,7 +48,7 @@ const Shop = () => {
       </div>
       <div className="cart-container">
         <h3 className="cart-header">Order Summary</h3>
-        <Cart></Cart>
+        <Cart key={cart.id} cart={cart}></Cart>
       </div>
     </div>
   );
