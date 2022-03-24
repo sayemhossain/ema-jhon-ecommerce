@@ -6,11 +6,12 @@ import "./Cart.css";
 const Cart = (props) => {
   const { cart } = props;
 
+  let quantity = 0;
   let total = 0;
   let shippingCost = 0;
   for (const product of cart) {
-    // console.log(product);
-    total += product.price;
+    quantity += product.quantity;
+    total += product.price * product.quantity;
     shippingCost += product.shipping;
   }
   let tax = parseFloat(((total * 5) / 100).toFixed(2));
