@@ -13,12 +13,24 @@ const Shop = () => {
   useEffect(() => {
     fetch("products.json")
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setProducts(data));
   }, []);
 
+  // this is for event handeler
+  const handleAddToCart = (product) => {
+    console.log(product);
+  };
   return (
     <div className="shop-container">
-      <div className="products-container"></div>
+      <div className="products-container">
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            product={product}
+            handleAddToCart={() => handleAddToCart(product)}
+          ></Product>
+        ))}
+      </div>
       <div className="cart-container">
         <h3 className="cart-header">Order Summary</h3>
         <Cart></Cart>
