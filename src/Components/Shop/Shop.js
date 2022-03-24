@@ -21,11 +21,18 @@ const Shop = () => {
   useEffect(() => {
     const storedCart = getStoredCart();
     // console.log(storedCart);
+    const savedProduct = [];
     for (const id in storedCart) {
       // console.log(id);
       const addedProducts = products.find((product) => product.id === id);
+      if (addedProducts) {
+        const quantity = storedCart[id];
+        addedProducts.quantity = quantity;
+        savedProduct.push(addedProducts);
+      }
       console.log(addedProducts);
     }
+    setCart(savedProduct);
   }, [products]);
 
   // this is for event handeler
